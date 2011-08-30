@@ -71,7 +71,7 @@ class EpiCurl
         usleep($outerSleepInt);
         $outerSleepInt = intval(max(1, ($outerSleepInt*$this->sleepIncrement)));
         $ms=curl_multi_select($this->mc, 0);
-        if($ms > 0)
+        if($ms != -1)
         {
           do{
             $this->execStatus = curl_multi_exec($this->mc, $this->running);
