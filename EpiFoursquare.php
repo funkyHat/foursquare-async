@@ -27,14 +27,13 @@ class EpiFoursquare
   public function getAccessToken($code, $redirectUri)
   {
     $params = array('client_id' => $this->clientId, 'client_secret' => $this->clientSecret, 'grant_type' => 'authorization_code', 'redirect_uri' => $redirectUri, 'code' => $code);
-    $qs = http_build_query($params);
-	return $this->request('GET', "{$this->accessTokenUrl}", $params);
+    return $this->request('GET', "{$this->accessTokenUrl}", $params);
   }
 
   public function getAuthorizeUrl($redirectUri)
   {
     $params = array('client_id' => $this->clientId, 'response_type' => 'code', 'redirect_uri' => $redirectUri);
-    $qs = http_build_query($params);
+    $qs = http_build_query($params, '', '&');
     return "{$this->requestTokenUrl}?{$qs}";
   }
 
